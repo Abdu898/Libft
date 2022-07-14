@@ -37,7 +37,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (s1[start] && istotrim(s1[start], set))
 		start++;
 	end = ft_strlen(s1) - 1;
-	printf("%d", end);
 	while (s1[end] && istotrim(s1[end], set))
 		end--;
 	str = (char *) malloc(sizeof(*s1 * (end - start + 1)));
@@ -58,7 +57,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 int	main(void)
 {
 	char	s1[] = "*   *42 wolfsburg ashahin*-*"/ _";
-	char	set[] = " /*,_\"\\";
+	char	set[] = " /,_\"\\";
 	char	*str = ft_strtrim(s1, set);
 
 	printf("answer is: %s", str);

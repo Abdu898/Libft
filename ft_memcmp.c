@@ -17,6 +17,8 @@ int	ft_memcmp(const void *str1, const void *str2, size_t n)
 	unsigned char	*temb_str1;
 	unsigned char	*temb_str2;
 
+	temb_str1 = (unsigned char *) str1;
+	temb_str2 = (unsigned char *) str2;
 	while (n)
 	{
 		if (temb_str1[n] == temb_str2[n])
