@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	*ft_memcpy(void *restrict	dst, const void *restrict	src, size_t	n)
+void	*ft_memcpy(void *dst, const void *src, size_t	n)
 {
 	unsigned char	*temb_src;
 	unsigned char	*temb_dst;
@@ -27,22 +27,3 @@ void	*ft_memcpy(void *restrict	dst, const void *restrict	src, size_t	n)
 	}
 	return ((void *) dst);
 }
-/*
-int	main(void)
-{
-	char	d[100];
-	char	*p;
-	int	i;
-
-	i = 0;
-	while (i <= 99)
-	{
-		d[i] = 't';
-		d[i + 50] = i;
-		i++;
-	}
-	p = ft_memcpy(d + 50, d, 10);
-	printf("the ans is: %c", p[1]);
-	return (0);
-}
-*/

@@ -22,34 +22,12 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	str = (char *) malloc(sizeof(*str) * (ft_strlen(s) + 1));
 	if (!str)
 		return (NULL);
-	str[ft_strlen(str)] = '\0';
 	i = 0;
 	while (s[i])
 	{
 		str[i] = f(i, s[i]);
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }
-/*
-#include "ft_strlen.c"
-char	put_index(unsigned int i, char c)
-{
-	if (i <= 9)
-		c = i + '0';
-	else
-		c = '+';
-	return (c);
-}
-
-int	main(void)
-{
-	char	str[50] = "HELLO_mr _abdu";
-	char	*result = ft_strmapi(str, put_index);
-
-	printf("The result is %s\n", str);
-	printf("The result is %s\n", result);
-	free (result);
-	return (0);
-}
-*/

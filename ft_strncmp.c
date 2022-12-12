@@ -12,35 +12,25 @@
 #include "libft.h"
 /*
 does it return the differnce between the two ascii values or -1, 0 and 1
+Compares at most count characters of two possibly null-terminated arrays.
+ The comparison is done lexicographically. Characters
+ following the null character are not compared.
+The sign of the result is the sign of the difference between
+ the values of the first pair of characters (both interpreted as unsigned char)
+  that differ in the arrays being compared.
+The behavior is undefined when access occurs past the end of either array lhs
+ or rhs. The behavior is undefined when either lhs or rhs is the null pointer.
 */
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < n)
+	while (i < n && i <= ft_strlen(str1) && i <= ft_strlen(str2))
 	{
-		if (str1[i] == str2[i])
-		{
-			if (i == (n - 1))
-				return (0);
-		}
-		if (str1[i] >= str2[i])
-			return ((int)(str1[i] - str2[i]));
-		if (str1[i] <= str2[i])
-			return ((int)(str1[i] - str2[i]));
+		if (((unsigned char *) str1)[i] != ((unsigned char *) str2)[i])
+			return (((unsigned char *) str1)[i] - ((unsigned char *) str2)[i]);
+		i++;
 	}
 	return (0);
 }
-/*
-int	main(void)
-{
-	char	str1[10];
-	char	str2[10];
-
-	strcpy(str1, "abcdef");
-	strcpy(str2, "KcBCDEF");
-	printf("%d\n", ft_strncmp(str1, str2, 13));
-	return (0);
-}
-*/

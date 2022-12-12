@@ -10,45 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+Move block of memory
+Copies the values of num bytes from the location pointed by source
+ to the memory block pointed by destination.
+ Copying takes place as if an intermediate buffer were used,
+  allowing the destination and source to overlap.
+
+The underlying type of the objects pointed by both the source
+ and destination pointers are irrelevant for this function;
+ The result is a binary copy of the data.
+
+The function does not check for any terminating null character
+ in source - it always copies exactly num bytes.
+
+To avoid overflows, the size of the arrays pointed by both 
+the destination and source parameters, shall be at least num bytes.
+*/
 #include "libft.h"
 
 void	*ft_memmove(void *to, const void *from, size_t numBytes)
 {
-	unsigned char	*temb_to;
-	unsigned char	*temb_from;
+	size_t	i;
 
-	temb_to = (unsigned char *)to;
-	temb_from = (unsigned char *)from;
-	while (numBytes--)
+	if (!to || !from)
+		return (0);
+	i = 0;
+	if ((size_t)(to - from) >= numBytes)
 	{
-		*(temb_to + numBytes) = *(temb_from + numBytes);
+		while (i < numBytes)
+		{
+			((unsigned char *)to)[i] = ((unsigned char *)from)[i];
+			i++;
+		}
+	}
+	if ((size_t)(to - from) < numBytes)
+	{
+		while (numBytes--)
+			((unsigned char *)to)[numBytes] = ((unsigned char *)from)[numBytes];
 	}
 	return (to);
 }
-/*
-int	main(void)
-{
-	unsigned char	d[110];
-	int	i;
-
-	i = 0;
-	while (i <= 100)
-	{
-		d[i] = i + 1;
-		printf("*%dth:%d\t", i + 1, d[i]);
-		i++;
-	}
-	ft_memmove(d +50, d, 50);
-	printf("%d", *(d+50));
-	i = 0;
-
-	while (i < 100)
-	{
-		printf(" %dth:%d\t", i + 1, d[i]);
-		i++;
-	}
-	return (0);
-}
-		// printf(" %lldth:%d=%d\t", numBytes + 1, temb_from[numBytes],/
-			//  temb_to[numBytes]);
-*/

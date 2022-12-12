@@ -9,33 +9,26 @@
 /*   Updated: 2022/06/22 18:37:20 by ashahin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+Locate last occurrence of character in string
+Returns a pointer to the last occurrence of character in the C string str.
 
+The terminating null-character is considered part of the C string.
+ Therefore, it can also be located to retrieve a pointer to the end of a string.
+ error t + 256????
+*/
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
 	int	len;
 
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	while (s[len - 1])
+	len = ft_strlen(s);
+	while (len >= 0)
 	{
-		if (s[len] == c)
+		if (s[len] == (unsigned char) c)
 			return ((char *)(s + len));
 		len--;
 	}
 	return (0);
 }
-/*
-int	main(void)
-{
-	char	*s;
-	char	c;
-
-	c = ' ';
-	s = "hello mr 42 badass";
-	printf("%s", ft_strrchr(s, c));
-	return (0);
-}
-*/

@@ -17,24 +17,12 @@ char	*ft_strdup(const char *s)
 	char	*p;
 	size_t	n;
 
-	while (s[n] != '\0')
-		n++;
-	p = (char *)malloc(n + 1);
-	if (p == NULL)
+	n = ft_strlen(s);
+	p = (char *)malloc(sizeof(char) * (n + 1));
+	if (!p)
 		return (0);
-	p[n + 1] = '\0';
+	p[n] = '\0';
 	while (n--)
 		p[n] = s[n];
 	return (p);
 }
-/*
-int	main(void)
-{
-	char	str[] = "42WOlfsburg";
-	char	*p = ft_strdup(str);
-
-	printf("*%c\n", p[10]);
-	free(p);
-	return (0);
-}
-*/

@@ -12,100 +12,52 @@
 
 #include "libft.h"
 
-size_t	count_words(char const *s, char c)
+static int	count_strings(char *s, char c)
 {
-	size_t	s_index;
-	size_t	elements;
+	int	counter;
+	int	i;
 
-	elements = 0;
-	s_index = 0;
-	while (s[s_index])
-	{
-		if (s[s_index] == c)
-			elements++;
-		s_index++;
-	}
-	elements++;
-	return (elements);
-}
-
-size_t	count_letters(char const *s, char c, size_t s_index)
-{
-	size_t	elements;
-	size_t	temb_index;
-
-	elements = 0;
-	temb_index = s_index;
-	while (s[temb_index] != c)
-	{
-		elements++;
-		temb_index++;
-	}
-	return (elements);
-}
-
-void	word_dup(char const *s, char *arr, size_t s_index, size_t l_c)
-{
-	size_t	i;
-	size_t	n;
-
+	counter = 0;
 	i = 0;
-	n = s_index;
-	while (i < l_c)
+	while (s[i])
 	{
-		arr[i] = s[n];
-		i++;
-		n++;
+		if (s[i] != c)
+		{
+			while (s[i] && s[i] != c)
+				i++;
+		counter++;
+		}
+		else
+			i++;
 	}
-	arr[i] = '\0';
+	return (counter);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**arr;
-	size_t	s_index;
-	size_t	w_c;
-	size_t	l_c;
+	size_t	start;
+	size_t	end;
 	size_t	i;
 
-	w_c = count_words(s, c);
-	arr = (char **) malloc((w_c + 1) * sizeof(char *));
+	if (!s)
+		return (NULL);
+	arr = ft_calloc(count_strings((char *)s, c) + 1, sizeof(char *));
 	if (!arr)
 		return (NULL);
-	l_c = 0;
+	start = 0;
 	i = 0;
-	s_index = 0;
-	while (i < w_c && s[s_index] != '\0')
+	while (s[start])
 	{
-		l_c = count_letters(s, c, s_index);
-		arr[i] = (char *) malloc((l_c + 1) * sizeof(char));
-		if (!arr[i])
-			return (NULL);
-		word_dup(s, arr[i], s_index, l_c);
-		s_index = s_index + l_c + 1;
+		while (s[start] == c && s[start])
+			start++;
+		end = start;
+		while (s[end] != c && s[end])
+			end++;
+		if (s[start])
+			arr[i] = ft_substr(s, start, end - start);
 		i++;
+		start = end;
 	}
-	arr[i] = '\0';
 	return (arr);
 }
-/*
-int	main(void)
-{
-	char	*s = "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC";
-	char	**str;
-	char	c;
-	size_t	i;
-
-	i = 0;
-	c = ',';
-	str = ft_split(s, c);
-	c = ',';
-	while (str[i])
-	{
-		printf("*%s", str[i]);
-		i++;
-	}
-	free(str);
-	return (0);
-}
-*/

@@ -10,6 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+/*
+The C library function int atoi(const char *str) 
+converts the string argument str to an integer (type int).
+*/
 #include "libft.h"
 
 int	ft_atoi(const char *strn)
@@ -18,34 +23,18 @@ int	ft_atoi(const char *strn)
 	int	i;
 	int	sign;
 
-	res = 0;
 	i = 0;
+	while ((strn[i] >= 9 && strn[i] <= 13) || strn[i] == 32)
+		i++;
+	res = 0;
 	sign = 1;
-	if (strn[i] == '-')
+	if (strn[i] == '-' || strn[i] == '+')
 	{
-		sign = -1;
+		if (strn[i] == '-')
+			sign = -1;
 		i++;
 	}
-	while (strn[i] != '\0')
-	{
-		if (strn[i] >= '0' && strn[i] <= '9')
-		{
-			res = res * 10 + strn[i] - '0';
-			i++;
-		}
-		else
-			return (0);
-	}
-	res = res * sign;
-	return (res);
+	while (strn[i] != '\0' && (strn[i] >= '0' && strn[i] <= '9'))
+		res = res * 10 + (strn[i++] - '0');
+	return (res * sign);
 }
-/*
-int	main(void)
-{
-	char	str[] = "-1206789";
-	int	val = ft_atoi(str);
-
-	printf("*%d\n", val);
-	return (0);
-}
-*/

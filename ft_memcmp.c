@@ -10,56 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+compares the first n bytes of memory area str1 and memory area str2.
+n − This is the number of bytes to be compared.
+0	Die verglichenen Zeichen hatten identische Werte
+> 0	Die verglichenen Zeichen waren nicht identisch, 
+der erste unterschiedliche Wert war bei first größer als bei second
+< 0	Die verglichenen Zeichen waren nicht identisch, 
+der erste unterschiedliche Wert war bei first kleiner als bei second
+*/
 #include "libft.h"
 
 int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	unsigned char	*temb_str1;
-	unsigned char	*temb_str2;
+	size_t			i;
 
-	temb_str1 = (unsigned char *) str1;
-	temb_str2 = (unsigned char *) str2;
-	while (n)
+	i = 0;
+	while (i < n)
 	{
-		if (temb_str1[n] == temb_str2[n])
-		{
-			if (n == 0)
-				return (0);
-		}
-		if (temb_str1[n] >= temb_str2[n])
-			return ((int)(temb_str1[n] - temb_str2[n]));
-		if (temb_str1[n] <= temb_str2[n])
-			return ((int)(temb_str1[n] - temb_str2[n]));
+		if (((unsigned char *) str1)[i] != ((unsigned char *) str2)[i])
+			return (((unsigned char *) str1)[i] - ((unsigned char *) str2)[i]);
+		i++;
 	}
 	return (0);
 }
-/*
-// #include "ft_memcpy"
-
-int	main(void)
-{
-	char	str1[15];
-	char	str2[15];
-	int	ret;
-
-	str1[15] = "abdcef";
-	str2[15] = "ABDCEF"; 
-
-
-//	ft_memcpy(str1, "abcdef", 6);
-//	ft_memcpy(str2, "ABCDEF", 6);
-
-	ret = ft_memcmp(str1, str2, 5);
-
-//	if(ret > 0) {
-//	printf("str2 is less than str1");
-//	} else if(ret < 0) {
-// 	  printf("str1 is less than str2");
-//    } else {
-// 	  printf("str1 is equal to str2");
-//   }
-	printf("%d     ", ret);
-   
-   return(0);
-}
-*/

@@ -36,14 +36,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	while (s1[start] && istotrim(s1[start], set))
 		start++;
-	end = ft_strlen(s1) - 1;
-	while (s1[end] && istotrim(s1[end], set))
+	end = ft_strlen(s1);
+	while (end > start && istotrim(s1[end - 1], set))
 		end--;
-	str = (char *) malloc(sizeof(*s1 * (end - start + 1)));
+	str = (char *) malloc(sizeof(*s1) * (end - start + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (start <= end)
+	while (start < end)
 	{
 		str[i] = s1[start];
 		i++;
@@ -52,16 +52,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str[i] = '\0';
 	return (str);
 }
-/*
-#include "ft_strlen.c"
-int	main(void)
-{
-	char	s1[] = "*   *42 wolfsburg ashahin*-*"/ _";
-	char	set[] = " /,_\"\\";
-	char	*str = ft_strtrim(s1, set);
-
-	printf("answer is: %s", str);
-	free(str);
-	return (0);
-}
-*/

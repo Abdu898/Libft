@@ -38,16 +38,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[i + j] = '\0';
 	return (str);
 }
-/*
-#include "ft_strlen.c"
-int	main(void)
-{
-	char	str1[] = "42Wolfsburg";
-	char	str2[] = "Ashahin";
-	char	*strnew = ft_strjoin(str1, str2);
-
-	printf("**%s\n", strnew);
-	free(strnew);
-	return (0);
-}
-*/

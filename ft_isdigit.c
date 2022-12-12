@@ -14,18 +14,7 @@
 
 int	ft_isdigit(int c)
 {
-	if (c >= 0 && c <= 9)
-		return (0);
-	else
+	if (c >= '0' && c <= '9')
 		return (1);
+	return (0);
 }
-
-/*
-int	main(){
-	int c;
-
-	c = 7;
-	printf("%d ",ft_isdigit(c));
-	return(0);
-}
-*/

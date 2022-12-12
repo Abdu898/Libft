@@ -12,22 +12,9 @@
 
 #include "libft.h"
 
-int	ft_isapha(int c)
+int	ft_isalpha(int c)
 {
-	if (c >= 'A' && c <= 'z')
-		return (0);
-	else
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
+	return (0);
 }
-
-/*
-#include<stdio.h>
-
-int	main(){
-	char c;
-
-	c = 70;
-	printf("%d \n",ft_isapha(c));
-	return(0);
-}
-*/

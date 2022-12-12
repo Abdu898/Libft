@@ -21,14 +21,3 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
-/*
-int	main()
-{
-	char	*s;
-
-	s = "dshsfh";
-	printf("%d\n", ft_strlen(s));
-	return (0);
-}
-*/

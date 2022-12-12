@@ -26,13 +26,3 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 	ft_putchar_fd('\n', fd);
 }
-/*
-#include "ft_putchar_fd.c"
-int	main(void)
-{
-	char	* s = "hello 42 wolfsburg2";
-	int handle = open("C:\\Users\\abdul\\42\\Libft\\hi.txt", O_WRONLY);
-	ft_putendl_fd(s, handle);
-	return 0;
-}
-*/

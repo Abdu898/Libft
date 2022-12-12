@@ -9,19 +9,35 @@
 /*   Updated: 2022/07/02 20:15:01 by ashahin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
+Parameters
+s: The string from which to create the substring.
+ start: The start index of the substring in the string ’s’.
+len: The maximum length of the substring.
+ 
+Description
+Allocates (with malloc(3)) and returns a substring from the string ’s’.
+The substring begins at index ’start’ and is of maximum size ’len’.
+*/
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub_str;
 	size_t	i;
+	size_t	strlen;
 
-	sub_str = (char *) malloc(len +1);
-	i = 0;
-	if (sub_str == NULL)
+	strlen = ft_strlen(s);
+	if ((size_t) start >= strlen)
+		return (ft_strdup(""));
+	if (len > ft_strlen(&s[start]))
+		sub_str = (char *)malloc((ft_strlen(&s[start]) + 1) * sizeof(char));
+	else
+		sub_str = (char *) malloc((len +1) * sizeof(char));
+	if (!sub_str)
 		return (NULL);
-	while (i < len && s[i + start] != '\0')
+	i = 0;
+	while (i < len && s[i])
 	{
 		sub_str[i] = s[i + start];
 		i++;
@@ -29,14 +45,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub_str[i] = '\0';
 	return (sub_str);
 }
-/*
-int	main(void)
-{
-	char	str[] = "42WolfsburgAshahin";
-	char	*sub_str = ft_substr(str, 2, 9);
-
-	printf("**%s\n", sub_str);
-	free(sub_str);
-	return (0);
-}
-*/

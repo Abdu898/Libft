@@ -14,16 +14,26 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	ft_putstr_fd(ft_itoa(n), fd);
+	int	temp;
+
+	temp = n;
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (temp < 0)
+	{
+		ft_putchar_fd('-', fd);
+		temp *= -1;
+	}
+	if (temp < 10)
+	{
+		ft_putchar_fd(temp + '0', fd);
+	}
+	else
+	{
+		ft_putnbr_fd(temp / 10, fd);
+		ft_putnbr_fd(temp % 10, fd);
+	}
 }
-/*
-#include "ft_itoa.c"
-#include "ft_putstr_fd.c"
-int	main(void)
-{
-	int	n = 123456789;
-	int handle = open("C:\\Users\\abdul\\42\\Libft\\hi.txt", O_WRONLY);
-	ft_putnbr_fd(n, handle);
-	return 0;
-}
-*/

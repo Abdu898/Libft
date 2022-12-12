@@ -10,39 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+The strlcpy() function copies up to size - 1 characters 
+from the NUL-terminated string src to dst, NUL-terminating the result.
+
+The strlcat() function appends the NUL-terminated string src to the end of dst. 
+It will append at most size - strlen(dst) - 1 bytes, NUL-terminating the result.
+if the size is les or equal to dstlen theen return dstlen + src len
+*/
 #include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 	size_t	dst_len;
+	size_t	src_len;
+	size_t	abend_len;
 
-	dst_len = 0;
-	while (dst[dst_len] != '\0')
-		dst_len++;
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	abend_len = dst_len + src_len;
+	if (size <= dst_len)
+		return (size + src_len);
 	i = 0;
-	while (src[i] != '\0' && dst_len + i < size)
+	while (src[i] && dst_len + i < size - 1)
 	{
 		dst[dst_len + i] = src[i];
 		i++;
 	}
 	dst[dst_len + i] = '\0';
-	return (dst_len + i);
+	return (abend_len);
 }
-/*
-int	main(void)
-{
-	char	s1[] = "hello 42";
-	char	s2[] = "abdulrahman shahin";
-	size_t	k;
-
-	ft_strlcat(s2, s1, 50);
-	k = 0;
-	while (s2[k] != '\0')
-	{
-		printf("0%c", s2[k]);
-		k++;
-	}
-	return (0);
-}
-*/

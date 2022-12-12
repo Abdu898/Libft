@@ -10,35 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+Applies the function ’f’ on each character of the string passed as argument,
+ passing its index as first argument.
+  Each character is passed by address to ’f’ to be modified if necessary.
+*/
 #include "libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
+	int	i;
 
+	i = 0;
 	if (s && f)
 	{
-		i = 0;
 		while (s[i])
 		{
-			f(i, s);
+			f(i, &s[i]);
 			i++;
 		}
 	}
 }
-/*
-void	my_tolower(unsigned int i, char *str)
-{
-	if (str[i] >= 'A' && str[i] <= 'Z')
-		str[i] += 32;
-}
-
-int	main(void)
-{
-	char	str[50] = "HELLO_MR_ABDU";
-
-	ft_striteri(str, my_tolower);
-	printf("The result is %s\n", str);
-	return (0);
-}
-*/

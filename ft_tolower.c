@@ -19,17 +19,3 @@ int	ft_tolower(int c)
 	else
 		return (c);
 }
-/*
-int	main()
-{
-	printf("%c\n", ft_tolower('$'));
-	printf("%c\n", ft_tolower('A'));
-	printf("%c\n", ft_tolower('H'));
-	printf("%c\n", ft_tolower('Z'));
-	printf("%c\n", ft_tolower('a'));
-	printf("%c\n", ft_tolower('d'));
-	printf("%c\n", ft_tolower('z'));
-	printf("%c\n", ft_tolower(' '));
-	return (0);
-}
-*/
